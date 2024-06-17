@@ -1,5 +1,7 @@
+import TalentCalculator from "./components/TalentCalculator";
+
 function App() {
-  return <h1>TitanStar Legends</h1>;
+  return <TalentCalculator />;
 }
 
 export default App;
