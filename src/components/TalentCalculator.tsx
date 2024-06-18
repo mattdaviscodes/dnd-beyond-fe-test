@@ -61,23 +61,31 @@ const TalentCalculator: React.FC<Props> = () => {
     return count;
   };
 
+  // TODO: Remove as many custom css values as possible
+
   return (
-    <div>
-      <div>
-        <h1>TitanStar Legends - Rune Master Loadout Talent Calculator 9000</h1>
-      </div>
-      <div>
-        <div>
-          {trees.map((tree, index) => (
-            <TalentTree
-              talents={tree}
-              index={index}
-              handleTalentLeftClick={handleTalentLeftClick}
-              handleTalentRightClick={handleTalentRightClick}
-            />
-          ))}
+    <div className="flex h-full w-full items-center justify-center bg-[#0A0F12]">
+      <div className="h-[400px] w-[1000px] border-2 border-[#151D26] bg-[url('/src/assets/talent-calc-bg.png')] bg-cover bg-no-repeat p-4 text-slate-50">
+        <div className="flex w-full items-center justify-center bg-gray-500/20 p-3 text-2xl">
+          <h1>
+            TitanStar Legends - Rune Master Loadout Talent Calculator 9000
+          </h1>
         </div>
-        <TalentCount total={MAX_POINTS} active={getActiveTalentCount()} />
+        <div className="flex h-full w-full flex-row items-center justify-evenly">
+          <div className="flex flex-col gap-4">
+            {trees.map((tree, index) => (
+              <TalentTree
+                key={`Talent Tree: ${index}`}
+                talents={tree}
+                index={index}
+                handleTalentLeftClick={handleTalentLeftClick}
+                handleTalentRightClick={handleTalentRightClick}
+                name={`Talent Path ${index + 1}`}
+              />
+            ))}
+          </div>
+          <TalentCount total={MAX_POINTS} active={getActiveTalentCount()} />
+        </div>
       </div>
     </div>
   );
