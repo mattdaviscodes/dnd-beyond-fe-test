@@ -18,6 +18,21 @@ const Talent: React.FC<Props> = ({
 }) => {
   const frameName = `${spriteFrame}_${active ? "active" : "inactive"}`;
 
+  const activeBorderStyles = {
+    borderImage:
+      "linear-gradient(0deg, rgba(111,170,229,1) 5%, rgba(36,55,74,1) 48%, rgba(111,170,229,1) 50%) 1",
+    borderWidth: "4px",
+    borderStyle: "solid",
+    boxShadow: "rgba(255, 255, 255, 0.75) 0px 0px 10px 0px",
+  };
+  const inactiveBorderStyles = {
+    borderImage:
+      "linear-gradient(0deg, rgba(75,75,75,1) 5%, rgba(57,57,57,1) 48%, rgba(75,75,75,1) 50%) 1",
+    borderWidth: "4px",
+    borderStyle: "solid",
+    boxShadow: "rgba(57, 57, 57, 0.75) 0px 0px 10px 0px",
+  };
+
   return (
     <div className="flex flex-grow flex-col items-center lg:flex-row">
       <div
@@ -26,6 +41,7 @@ const Talent: React.FC<Props> = ({
           e.preventDefault();
           handleTalentRightClick();
         }}
+        style={active ? activeBorderStyles : inactiveBorderStyles}
         className={`cursor-pointer`}
       >
         <Sprite
