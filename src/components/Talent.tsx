@@ -1,5 +1,4 @@
 import Sprite from "./Sprite";
-import spritesheetData from "../assets/talent-icons-sprite.json";
 
 interface Props {
   active: boolean;
@@ -44,12 +43,7 @@ const Talent: React.FC<Props> = ({
         style={active ? activeBorderStyles : inactiveBorderStyles}
         className={`cursor-pointer`}
       >
-        <Sprite
-          active={active}
-          spritesheet="/src/assets/talent-icons-sprite.png"
-          data={spritesheetData}
-          frame={frameName}
-        />
+        <Sprite frameName={frameName} />
       </div>
       <div
         hidden={isLast}

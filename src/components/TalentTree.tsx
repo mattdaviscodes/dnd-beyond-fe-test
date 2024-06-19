@@ -1,7 +1,5 @@
 import Talent from "./Talent";
 
-// TODO: Sort interfaces and prop desctrucures alpha
-
 interface Talent {
   active: boolean;
   spriteFrame: string;

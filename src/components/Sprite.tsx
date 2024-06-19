@@ -1,42 +1,39 @@
-interface SpritesheetFrame {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-}
+import data from "../assets/talent-icons-sprite.json";
+
+const SPRITESHEET_ASSET_PATH = "/src/assets/talent-icons-sprite.png";
 
 interface SpritesheetData {
   frames: {
-    [key: string]: SpritesheetFrame;
+    [key: string]: {
+      x: number;
+      y: number;
+      w: number;
+      h: number;
+    };
   };
 }
 
 interface Props {
-  active: boolean;
-  spritesheet: string;
-  data: SpritesheetData;
-  frame: string;
+  frameName: string;
 }
 
-// TODO: If spritesheet size doesn't have to be dynamic, just hardcode spritesheet path and data
+const Sprite: React.FC<Props> = ({ frameName }) => {
+  const spritesheet: SpritesheetData = data;
+  const frame = spritesheet.frames[frameName];
 
-const Sprite: React.FC<Props> = ({ active, spritesheet, data, frame }) => {
-  const frameData = data.frames[frame];
-
-  if (!frameData) {
+  if (!frame) {
     return;
   }
 
   return (
     <div
       style={{
-        backgroundPositionX: frameData.x,
-        backgroundPositionY: frameData.y,
-        // backgroundSize: `${ORIGINAL_W * scaleX}px ${ORIGINAL_H * scaleY}px`,
-        backgroundImage: `url(${spritesheet})`,
+        backgroundPositionX: frame.x,
+        backgroundPositionY: frame.y,
+        backgroundImage: `url(${SPRITESHEET_ASSET_PATH})`,
         backgroundRepeat: "no-repeat",
-        height: frameData.h,
-        width: frameData.w,
+        height: frame.h,
+        width: frame.w,
       }}
     ></div>
   );
