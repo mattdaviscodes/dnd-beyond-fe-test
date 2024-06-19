@@ -1,6 +1,6 @@
 import data from "../assets/talent-icons-sprite.json";
 
-const SPRITESHEET_ASSET_PATH = "/src/assets/talent-icons-sprite.png";
+import talentIcons from "../assets/talent-icons-sprite.png";
 
 interface SpritesheetData {
   frames: {
@@ -30,7 +30,7 @@ const Sprite: React.FC<Props> = ({ frameName }) => {
       style={{
         backgroundPositionX: frame.x,
         backgroundPositionY: frame.y,
-        backgroundImage: `url(${SPRITESHEET_ASSET_PATH})`,
+        backgroundImage: `url(${talentIcons})`,
         backgroundRepeat: "no-repeat",
         height: frame.h,
         width: frame.w,

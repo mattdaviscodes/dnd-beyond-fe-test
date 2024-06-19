@@ -3,6 +3,8 @@ import { useState } from "react";
 import TalentCount from "./TalentCount";
 import TalentTree from "./TalentTree";
 
+import backgroundImage from "../assets/talent-calc-bg.png";
+
 const MAX_POINTS = 6;
 const DEFAULT_TREES = [
   [
@@ -73,8 +75,11 @@ const TalentCalculator: React.FC<Props> = () => {
   };
 
   return (
-    <div className="lg:overflow-hidden h-full w-full items-center justify-center bg-zinc-950 lg:flex">
-      <div className="flex h-full w-full flex-col justify-between bg-[url('/src/assets/talent-calc-bg.png')] bg-cover bg-no-repeat text-slate-50 lg:h-fit lg:w-3/4 lg:max-w-4xl lg:border-2 lg:border-gray-900 lg:p-4">
+    <div className="h-full w-full items-center justify-center bg-zinc-950 lg:flex lg:overflow-hidden">
+      <div
+        style={{ background: `url(${backgroundImage})` }} // Tailwind doesn't like building dynamic rules, so use style here
+        className="flex h-full w-full flex-col justify-between bg-cover bg-no-repeat text-slate-50 lg:h-fit lg:w-3/4 lg:max-w-4xl lg:border-2 lg:border-gray-900 lg:p-4"
+      >
         <div className="w-full items-center bg-gray-500/20 p-4 text-center lg:flex lg:items-center lg:justify-center">
           <h1 className="mb-2 text-4xl md:text-6xl lg:mb-0 lg:text-2xl">
             TitanStar Legends
