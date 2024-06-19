@@ -64,15 +64,19 @@ const TalentCalculator: React.FC<Props> = () => {
   // TODO: Remove as many custom css values as possible
 
   return (
-    <div className="flex h-full w-full items-center justify-center bg-[#0A0F12]">
-      <div className="h-[400px] w-[1000px] border-2 border-[#151D26] bg-[url('/src/assets/talent-calc-bg.png')] bg-cover bg-no-repeat p-4 text-slate-50">
-        <div className="flex w-full items-center justify-center bg-gray-500/20 p-3 text-2xl">
-          <h1>
-            TitanStar Legends - Rune Master Loadout Talent Calculator 9000
+    <div className="h-full w-full items-center justify-center bg-[#0A0F12] lg:flex">
+      <div className="flex h-full w-full flex-col justify-between bg-[url('/src/assets/talent-calc-bg.png')] bg-cover bg-no-repeat text-slate-50 lg:h-fit lg:w-3/4 lg:max-w-4xl lg:border-2 lg:border-[#151D26] lg:p-4">
+        <div className="w-full items-center bg-gray-500/20 p-4 text-center lg:flex lg:items-center lg:justify-center">
+          <h1 className="mb-2 text-4xl md:text-6xl lg:mb-0 lg:text-2xl">
+            TitanStar Legends
           </h1>
+          <span className="hidden lg:mx-2 lg:block lg:text-2xl">-</span>
+          <h2 className="text-2xl md:text-3xl lg:text-2xl">
+            Rune Master Loadout Talent Calculator 9000
+          </h2>
         </div>
-        <div className="flex h-full w-full flex-row items-center justify-evenly">
-          <div className="flex flex-col gap-4">
+        <div className="flex flex-grow flex-col justify-between lg:flex-row lg:items-center lg:justify-around">
+          <div className="flex flex-grow justify-around lg:my-8 lg:flex-col lg:justify-center lg:gap-y-4">
             {trees.map((tree, index) => (
               <TalentTree
                 key={`Talent Tree: ${index}`}

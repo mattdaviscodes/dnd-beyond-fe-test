@@ -18,9 +18,11 @@ const TalentTree: React.FC<Props> = ({
   name,
 }) => {
   return (
-    <div className="flex items-center justify-between gap-4">
-      <h2 className="uppercase text-slate-400">{name}</h2>
-      <div className="flex">
+    <div className="flex flex-col p-4 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+      <h2 className="mb-6 text-center text-2xl uppercase text-slate-400 md:mb-12 md:text-4xl lg:mb-0 lg:text-sm">
+        {name}
+      </h2>
+      <div className="items-between flex flex-grow flex-col justify-between lg:flex-row">
         {talents.map((talentIsActive, talentIndex) => (
           <Talent
             key={`Talent Tree ${index}, Talent: ${talentIndex}`}
