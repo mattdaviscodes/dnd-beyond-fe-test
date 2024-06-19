@@ -1,8 +1,12 @@
+import Sprite from "./Sprite";
+import spritesheetData from "../assets/talent-icons-sprite.json";
+
 interface Props {
   active: boolean;
   handleTalentLeftClick: () => void;
   handleTalentRightClick: () => void;
   isLast: boolean;
+  spriteFrame: string;
 }
 
 const Talent: React.FC<Props> = ({
@@ -10,7 +14,10 @@ const Talent: React.FC<Props> = ({
   handleTalentLeftClick,
   handleTalentRightClick,
   isLast,
+  spriteFrame,
 }) => {
+  const frameName = `${spriteFrame}_${active ? "active" : "inactive"}`;
+
   return (
     <div className="flex flex-grow flex-col items-center lg:flex-row">
       <div
@@ -19,11 +26,18 @@ const Talent: React.FC<Props> = ({
           e.preventDefault();
           handleTalentRightClick();
         }}
-        className={`h-10 w-10 cursor-pointer border border-white md:h-14 md:w-14 ${active ? "bg-red-500" : "hover:bg-red-200"} lg:h-10 lg:w-10`}
-      ></div>
+        className={`cursor-pointer`}
+      >
+        <Sprite
+          active={active}
+          spritesheet="/src/assets/talent-icons-sprite.png"
+          data={spritesheetData}
+          frame={frameName}
+        />
+      </div>
       <div
         hidden={isLast}
-        className={`w-4 border-x-2 border-gray-400 bg-gray-500 ${active ? "opacity-60" : "opacity-30"} flex-grow lg:h-4 lg:w-20`}
+        className={`w-4 border-x-2 border-gray-400 bg-gray-500 ${active ? "opacity-60" : "opacity-30"} flex-grow lg:h-4 lg:w-20 lg:border-x-0 lg:border-y-2`}
       ></div>
     </div>
   );

@@ -5,8 +5,18 @@ import TalentTree from "./TalentTree";
 
 const MAX_POINTS = 6;
 const DEFAULT_TREES = [
-  [false, false, false, false],
-  [false, false, false, false],
+  [
+    { active: false, spriteFrame: "stack" },
+    { active: false, spriteFrame: "utensils" },
+    { active: false, spriteFrame: "cake" },
+    { active: false, spriteFrame: "crown" },
+  ],
+  [
+    { active: false, spriteFrame: "ship" },
+    { active: false, spriteFrame: "scuba" },
+    { active: false, spriteFrame: "lightning" },
+    { active: false, spriteFrame: "skull" },
+  ],
 ];
 
 interface Props {}
@@ -15,12 +25,12 @@ const TalentCalculator: React.FC<Props> = () => {
   const [trees, setTrees] = useState(DEFAULT_TREES);
 
   const handleTalentLeftClick = (treeIndex: number, talentIndex: number) => {
-    const talentIsActive = trees[treeIndex][talentIndex];
+    const talent = trees[treeIndex][talentIndex];
     const precedingTalentsAreActive = trees[treeIndex]
       .slice(0, talentIndex)
-      .every((talentIsActive) => talentIsActive);
+      .every((talent) => talent.active);
 
-    if (talentIsActive || !precedingTalentsAreActive) {
+    if (talent.active || !precedingTalentsAreActive) {
       return;
     }
 
@@ -28,12 +38,12 @@ const TalentCalculator: React.FC<Props> = () => {
   };
 
   const handleTalentRightClick = (treeIndex: number, talentIndex: number) => {
-    const talentIsActive = trees[treeIndex][talentIndex];
+    const talent = trees[treeIndex][talentIndex];
     const followingTalentsAreInactive = trees[treeIndex]
       .slice(talentIndex + 1)
-      .every((talentIsActive) => !talentIsActive);
+      .every((talent) => !talent.active);
 
-    if (!talentIsActive || !followingTalentsAreInactive) {
+    if (!talent.active || !followingTalentsAreInactive) {
       return;
     }
 
@@ -42,7 +52,8 @@ const TalentCalculator: React.FC<Props> = () => {
 
   const toggleTalent = (treeIndex: number, talentIndex: number) => {
     const newTrees = trees.map((tree) => [...tree]);
-    newTrees[treeIndex][talentIndex] = !newTrees[treeIndex][talentIndex];
+    newTrees[treeIndex][talentIndex].active =
+      !newTrees[treeIndex][talentIndex].active;
 
     setTrees(newTrees);
   };
@@ -51,8 +62,8 @@ const TalentCalculator: React.FC<Props> = () => {
     let count = 0;
 
     trees.forEach((tree) =>
-      tree.forEach((talentIsActive) => {
-        if (talentIsActive) {
+      tree.forEach((talent) => {
+        if (talent.active) {
           count += 1;
         }
       }),

@@ -2,8 +2,13 @@ import Talent from "./Talent";
 
 // TODO: Sort interfaces and prop desctrucures alpha
 
+interface Talent {
+  active: boolean;
+  spriteFrame: string;
+}
+
 interface Props {
-  talents: boolean[];
+  talents: Talent[];
   index: number;
   handleTalentLeftClick: (treeIndex: number, talentIndex: number) => void;
   handleTalentRightClick: (treeIndex: number, talentIndex: number) => void;
@@ -23,10 +28,11 @@ const TalentTree: React.FC<Props> = ({
         {name}
       </h2>
       <div className="items-between flex flex-grow flex-col justify-between lg:flex-row">
-        {talents.map((talentIsActive, talentIndex) => (
+        {talents.map((talent, talentIndex) => (
           <Talent
             key={`Talent Tree ${index}, Talent: ${talentIndex}`}
-            active={talentIsActive}
+            active={talent.active}
+            spriteFrame={talent.spriteFrame}
             handleTalentLeftClick={() =>
               handleTalentLeftClick(index, talentIndex)
             }
