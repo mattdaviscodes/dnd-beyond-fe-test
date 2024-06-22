@@ -27,6 +27,9 @@ const TalentCalculator: React.FC<Props> = () => {
   const [trees, setTrees] = useState(DEFAULT_TREES);
 
   const handleTalentLeftClick = (treeIndex: number, talentIndex: number) => {
+    if (getActiveTalentCount() === MAX_POINTS) {
+      return;
+    }
     const talent = trees[treeIndex][talentIndex];
     const precedingTalentsAreActive = trees[treeIndex]
       .slice(0, talentIndex)
